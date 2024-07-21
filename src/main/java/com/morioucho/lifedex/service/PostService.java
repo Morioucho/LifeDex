@@ -4,10 +4,12 @@ import com.morioucho.lifedex.model.Post;
 import com.morioucho.lifedex.repository.PostRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Service
 public class PostService {
     @Autowired
     private PostRepository postRepository;
@@ -21,7 +23,7 @@ public class PostService {
     }
 
     public Post createPost(Post post){
-        post.setCreationAt(LocalDateTime.now());
+        post.setCreationDate(LocalDateTime.now());
 
         return postRepository.save(post);
     }

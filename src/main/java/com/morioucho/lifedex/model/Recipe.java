@@ -1,19 +1,18 @@
 package com.morioucho.lifedex.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.GenerationType;
 
 import java.time.LocalDateTime;
 
 @Entity
-public class Post {
+public class Recipe {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
-    private String content;
+    private String ingredients;
+    private String instructions;
     private LocalDateTime creationDate;
 
     public Long getId() {
@@ -32,12 +31,20 @@ public class Post {
         this.title = title;
     }
 
-    public String getContent() {
-        return content;
+    public String getIngredients() {
+        return ingredients;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public String getInstructions() {
+        return instructions;
+    }
+
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
     }
 
     public LocalDateTime getCreationDate() {
