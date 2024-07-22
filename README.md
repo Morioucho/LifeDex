@@ -30,6 +30,6 @@ There are many features planned ahead, but we are still working on implementing 
   
 <p align="center">
   <i> Made by Saumil Sharma, Kason Lai, Christian Hsu, and Ceazar Jensen Opaon.</i> <br>
-  <sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><sub><sup>We have a disliking of Beast Gohan.</sup></sub></sup></sub></sup></sub></sup></sub></sup></sub></sup></sub></sup></sub></sup></sub>
+  <sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><a href="docs\Information.md">A little easter egg.</a></sup></sub></sup></sub></sup></sub></sup></sub></sup></sub></sup></sub></sup></sub></sup></sub>
 </p>
 
