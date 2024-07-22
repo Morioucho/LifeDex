@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/images/LifeDexLogoTransparent.webp" width="500px" alt="LifeDex Logo">
+  <img src="docs/images/LifeDexBannerNoBackground.png" width="500px" alt="LifeDex Logo">
 </p>
 
 # LifeDex: A Guidebook on Life
@@ -12,7 +12,7 @@ LifeDex is a website intended to help people who are new to living by themselves
 - **Financial Advice:** A collection of financial advice on how to budget your dorm, apartment, house, loans, and other things.
 
 # Quick Start
-In order to build the program, you should have Gradle installed in an IDE of your choice.
+In order to build the program, you should have **Gradle** installed in an IDE of your choice as well as  **PostgreSQL 16** installed with the properties specified in `src\main\resources\application.properties`.
 ```bash
 # Ensure that you're in the folder that has the "gradlew" file present.
 ./gradlew bootRun
@@ -25,11 +25,11 @@ Updating the backend is fairly easy due to the usage of SpringBoot, every item, 
 Updating the frontend is also easy as you can navigate to this folder: `src\main\resources`. You can add templates under the "template" folder (e.x. post.html) and normal pages under the "static" folder (e.x. index.html).
 
 # Roadmap
-There are a variety of planned features for the future, as of 7/20/2024, the core features are yet to be created.  
+There are many features planned ahead, but we are still working on implementing the core features such as the **website** and the **backend**.
   
   
 <p align="center">
   <i> Made by Saumil Sharma, Kason Lai, Christian Hsu, and Ceazar Jensen Opaon.</i> <br>
-  <sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><sub><sup>I'm thinking Miku Miku oo ee oo I'm thinking Miku Miku oo ee oo</sup></sub></sup></sub></sup></sub></sup></sub></sup></sub></sup></sub></sup></sub></sup></sub>
+  <sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><sub><sup>We have a disliking of Beast Gohan.</sup></sub></sup></sub></sup></sub></sup></sub></sup></sub></sup></sub></sup></sub></sup></sub>
 </p>
 
