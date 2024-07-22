@@ -13,6 +13,16 @@ jobs:
     permissions:
       contents: read
 
+    services:
+      postgres:
+        image: postgres:latest
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_DB: lifedex
+          POSTGRES_USER: lifedex_user
+          POSTGRES_PASSWORD: lifedex
+
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
@@ -21,13 +31,18 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Make gradlew Executable
+    - name: Make gradlew executable
       run: chmod +x ./gradlew
 
-    # Configure Gradle for optimal use in GitHub Actions, including caching of downloaded dependencies.
-    # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
+
+    - name: Wait for PostgreSQL
+      run: |
+        until pg_isready -h localhost -p 5432 -U lifedex_user; do
+          echo "Waiting for PostgreSQL..."
+          sleep 5
+        done
 
     - name: Build with Gradle Wrapper
       run: ./gradlew build
@@ -38,6 +53,16 @@ jobs:
     permissions:
       contents: write
 
+    services:
+      postgres:
+        image: postgres:latest
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_DB: lifedex
+          POSTGRES_USER: lifedex_user
+          POSTGRES_PASSWORD: lifedex
+
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
@@ -45,11 +70,19 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        
-    - name: Make gradlew Executable
+
+    - name: Make gradlew executable
       run: chmod +x ./gradlew
 
-    # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
-    # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
+
+    - name: Wait for PostgreSQL
+      run: |
+        until pg_isready -h localhost -p 5432 -U lifedex_user; do
+          echo "Waiting for PostgreSQL..."
+          sleep 5
+        done
+
     - name: Generate and submit dependency graph
       uses: gradle/actions/dependency-submission@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
