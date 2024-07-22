@@ -18,19 +18,15 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+	dependencies {
+		implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+		implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+		implementation 'org.springframework.boot:spring-boot-starter-web'
+		testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-	implementation 'net.sf.ucanaccess:ucanaccess:5.0.1'
-	implementation 'net.sf.ucanaccess:hsqldb:2.5.1'
-	implementation 'net.sf.ucanaccess:jaxb:2.3.0'
-	implementation 'com.healthmarketscience.jackcess:jackcess:4.0.5'
-	implementation 'commons-logging:commons-logging:1.2'
-
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+		runtimeOnly 'org.postgresql:postgresql:42.2.19'
+		testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	}
 }
 
 tasks.named('test') {
