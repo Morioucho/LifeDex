@@ -17,12 +17,18 @@ LifeDex is a website intended to help people who are new to living by themselves
 - **Financial Advice:** A collection of financial advice on how to budget your dorm, apartment, house, loans, and other things.
 
 # Quick Start
-In order to build the program, you should have **Gradle** installed in an IDE of your choice as well as  **PostgreSQL 16** installed with the properties specified in `src\main\resources\application.properties`.
+First, install PostgreSQL from the PostgreSQL website, you can install it from [here](https://www.postgresql.org/download/).
+You may be asked to create a Postgre user when installing Postgre, make sure that you **remember both the
+username and the password.**
+
+Make sure to set up PostgreSQL to mirror the settings shown in the `application.properties` file. Make sure you create the same username, password, and port **OR** modify the `application.properties` to mimic your new settings.
+
+In order to build the program, you should have **Gradle** installed in your IDE.
 ```bash
 # Ensure that you're in the folder that has the "gradlew" file present.
 ./gradlew bootRun
 ```
-Following this, the website should be up on `localhost:8080`.
+Following this, the website should be up on `localhost:8080`. Or whatever port you configured SpringBoot to load into.
 
 # Adding Changes
 Updating the backend is fairly easy due to the usage of SpringBoot, every item, such as services and controllers, are stored in their respective packages: `controller`, `model`, `repository`, and `service`.
