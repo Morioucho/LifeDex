@@ -28,6 +28,7 @@ public class PostService {
     public Post createPost(Post post){
         post.setCreationDate(LocalDateTime.now());
         trieService.insertTitle(post.getTitle());
+
         return postRepository.save(post);
     }
 

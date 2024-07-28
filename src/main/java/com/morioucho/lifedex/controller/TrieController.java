@@ -16,6 +16,12 @@ public class TrieController {
     @Autowired
     private PostService postService;
 
+    /**
+     * Searches for a topic using a prefix.
+     *
+     * @param prefix the prefix to use in order to search
+     * @return a list of possible searches
+     */
     @GetMapping("/search")
     public List<String> search(@RequestParam String prefix){
         return postService.searchTitleWithPrefix(prefix);

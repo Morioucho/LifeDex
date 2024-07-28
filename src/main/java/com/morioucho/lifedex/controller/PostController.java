@@ -17,6 +17,12 @@ public class PostController {
     @Autowired
     private PostService postService;
 
+    /**
+     * Retrieves all the posts and returns them in a model.
+     *
+     * @param model the model to add attributes and such to
+     * @return a name to display posts
+     */
     @GetMapping
     public String getAllPosts(Model model){
         List<Post> posts = postService.findAll();
@@ -25,6 +31,13 @@ public class PostController {
         return "posts";
     }
 
+    /**
+     * Retrieves a post via ID and adds it to the model.
+     *
+     * @param id the ID of the post to retrieve
+     * @param model the model to add attributes and such to
+     * @return the view name for displaying posts
+     */
     @GetMapping("/{id}")
     public String getPostByID(@PathVariable Long id, Model model){
         Post post = postService.getPostByID(id);
@@ -33,6 +46,12 @@ public class PostController {
         return "post";
     }
 
+    /**
+     * Displays the form for making a new post.
+     *
+     * @param model the model to add attributes to
+     * @return the view name for the create post form
+     */
     @GetMapping("/new")
     public String createPostForm(Model model){
         model.addAttribute("post", new Post());
@@ -40,6 +59,12 @@ public class PostController {
         return "create_post";
     }
 
+    /**
+     * Creates a new post.
+     *
+     * @param post the post to create
+     * @return a redirect to the list of posts
+     */
     @PostMapping
     public String createPost(@ModelAttribute Post post){
         postService.createPost(post);
@@ -47,8 +72,15 @@ public class PostController {
         return "redirect:/posts";
     }
 
+    /**
+     * Deletes a post using its ID
+     *
+     * @param id the ID of the post to delete.
+     * @return a redirect to the list of posts
+     */
     @GetMapping("/delete/{id}")
     public String deletePost(@PathVariable Long id){
+        // TODO: Secure this endpoint so that random posts won't be removed.
         postService.deletePost(id);
 
         return "redirect:/posts";

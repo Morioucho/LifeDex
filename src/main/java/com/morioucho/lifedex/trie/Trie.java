@@ -14,7 +14,7 @@ public class Trie {
         Node curr = this.root;
 
         for(char letter : word.toCharArray()){
-            curr = curr.getChildren().computeIfAbsent(letter, k -> new Node());
+            curr = curr.getChildren().computeIfAbsent(letter, n -> new Node());
         }
 
         curr.setEndOfWord(true);
@@ -60,5 +60,15 @@ public class Trie {
             findAllWords(curr.getChildren().get(letter), prefix, results);
             prefix.deleteCharAt(prefix.length() - 1);
         }
+    }
+
+    public String toString(){
+        StringBuilder strBuilder = new StringBuilder();
+
+        for(Node curr : this.root.getChildren().values()){
+            strBuilder.append(curr.toString()).append(", ");
+        }
+
+        return strBuilder.toString();
     }
 }
