@@ -16,6 +16,7 @@ public class FaviconConfiguration {
         mapping.setOrder(Integer.MIN_VALUE);
         mapping.setUrlMap(Collections.singletonMap(
                 "/favicon.ico", faviconRequestHandler()));
+        
         return mapping;
     }
 
