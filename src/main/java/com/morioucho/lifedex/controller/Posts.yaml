@@ -1,0 +1,51 @@
+openapi: 3.0.3
+
+info:
+  title: Posts
+  description: This is the API documentation for the posts endpoint.
+  version: 1.0.0
+
+servers:
+  - url: 'http://localhost:8080'
+    description: Default Springboot hosting location on run.
+
+paths:
+  /posts:
+    get:
+      summary: Returns a list of all Posts.
+      description: Returns a list of Post objects that contain all information relevant.
+      responses:
+        '200':
+          description: A JSON array of all the posts.
+        '401':
+          description: Unauthorized.
+  /{id}:
+    get:
+      summary: Returns a Post with the specified ID.
+      responses:
+        '200':
+          description: A single post with the specified ID, null if not.
+        '400':
+          description: The specified post with said ID doesn't exist.
+  /new:
+    post:
+      summary: Creates a post with the specified information.
+      responses:
+        '200':
+          description: The post was successfully created.
+        '400':
+          description: Something went wrong while creating the post.
+  /delete/{id}:
+    delete:
+      summary: Deletes the post with the specified ID.
+      responses:
+        '200':
+          description: The post was successfully removed.
+        '401':
+          description: Unauthorized.
+
+
+
+
+
+  
