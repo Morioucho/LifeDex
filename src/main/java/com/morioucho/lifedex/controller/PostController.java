@@ -2,7 +2,6 @@ package com.morioucho.lifedex.controller;
 
 import com.morioucho.lifedex.model.Post;
 import com.morioucho.lifedex.service.PostService;
-import com.morioucho.lifedex.service.TrieService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,7 +29,7 @@ public class PostController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Post> getPostByID(@PathVariable Long id){
-        Post foundPost = postService.getPostByID(id);
+        Post foundPost = postService.findByID(id);
         if(foundPost == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -45,11 +44,11 @@ public class PostController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deletePost(@PathVariable Long id){
-        Post foundPost = postService.getPostByID(id);
+        Post foundPost = postService.findByID(id);
 
         if(foundPost != null){
             postService.deletePost(id);
-            
+
             return new ResponseEntity<>("The post with ID " + id + "was successfully deleted.", HttpStatus.OK);
         }
 

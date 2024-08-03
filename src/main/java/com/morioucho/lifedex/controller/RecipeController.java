@@ -3,6 +3,8 @@ package com.morioucho.lifedex.controller;
 import com.morioucho.lifedex.model.Recipe;
 import com.morioucho.lifedex.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,37 +15,43 @@ public class RecipeController {
     @Autowired
     private RecipeService recipeService;
 
-    /**
-     * Retrieves all the recipes.
-     *
-     * @return all the recipes
-     */
     @GetMapping
-    public List<Recipe> getAllRecipes(){
-        return recipeService.getAllRecipes();
+    public ResponseEntity<List<Recipe>> getAllRecipes() {
+        List<Recipe> found = recipeService.getAllRecipes();
+
+        if(found.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(found, HttpStatus.OK);
     }
 
-    /**
-     * Returns a recipe via its ID
-     *
-     * @param id the ID of the recipe
-     * @return the recipe with said ID
-     */
     @GetMapping("/{id}")
-    public Recipe getRecipeByID(@PathVariable Long id){
-        return recipeService.getRecipeByID(id);
+    public ResponseEntity<Recipe> getRecipeByID(@PathVariable Long id) {
+        Recipe foundRecipe = recipeService.findByID(id);
+        if(foundRecipe == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(recipeService.findByID(id), HttpStatus.OK);
     }
 
-    /**
-     * Creates a new recipe.
-     *
-     * @param recipe the recipe to create
-     * @return the created recipe
-     */
-    @PostMapping
-    public Recipe createRecipe(@RequestBody Recipe recipe){
-        return recipeService.createRecipe(recipe);
+    @PostMapping("/new")
+    public ResponseEntity<Recipe> createRecipe(@RequestBody Recipe recipe) {
+        if (recipe.getTitle() == null || recipe.getIngredients() == null || recipe.getInstructions() == null) {
+            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+
+        return new ResponseEntity<>(recipeService.createRecipe(recipe), HttpStatus.CREATED);
     }
 
-    // TODO: Delete Mapping
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteRecipe(@PathVariable Long id) {
+        if (recipeService.findByID(id) == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        recipeService.deleteRecipe(id);
+        return new ResponseEntity<>("Successfully deleted the Recipe with ID " + id + ".", HttpStatus.OK);
+    }
 }

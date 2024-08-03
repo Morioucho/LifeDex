@@ -1,0 +1,54 @@
+openapi: 3.0.3
+
+info:
+  title: Recipes
+  description: This is the API documentation for the recipes endpoint.
+  version: 1.0.0
+
+servers:
+  - url: 'http://localhost:8080'
+    description: Default Springboot hosting location on run.
+
+paths:
+  /api/recipes:
+    get:
+      summary: Get All Recipes
+      description: Returns a ResponseEntity that contains all the found recipes.
+      responses:
+        '200':
+          description: A JSON array of all the posts.
+        '204':
+          description: There is no content on the server.
+  /api/recipes/{id}:
+    get:
+      summary: Get Recipe with ID
+      description: Returns a ResponseEntity with a Recipe with the given ID. If the said recipe doesn't exist, it returns a 404.
+      responses:
+        '200':
+          description: The recipe that corresponds with the ID.
+        '404':
+          description: A recipe with the given ID doesn't exist.
+  /api/recipes/new:
+    post:
+      summary: Create a Recipe
+      description: Creates a recipe with the content specified in the body of the request.
+      responses:
+        '201':
+          description: The recipe was successfully created.
+        '422':
+          description: The content for the recipe is missing a crucial part.
+  /api/recipes/delete/{id}:
+    delete:
+      summary: Delete a Recipe
+      description: Deletes a recipe if a recipe with the given ID exists.
+      responses:
+        '200':
+          description: The recipe was removed successfully.
+        '404':
+          description: The specified recipe with the supposed ID wasn't found.
+
+
+
+
+
+  

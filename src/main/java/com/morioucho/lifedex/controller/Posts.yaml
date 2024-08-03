@@ -10,7 +10,7 @@ servers:
     description: Default Springboot hosting location on run.
 
 paths:
-  /posts:
+  /api/posts:
     get:
       summary: Returns a list of all Posts.
       description: Returns a list of Post objects that contain all information relevant.
@@ -19,7 +19,7 @@ paths:
           description: A JSON array of all the posts.
         '401':
           description: Unauthorized.
-  /{id}:
+  /api/posts/{id}:
     get:
       summary: Returns a Post with the specified ID.
       responses:
@@ -27,7 +27,7 @@ paths:
           description: A single post with the specified ID, null if not.
         '400':
           description: The specified post with said ID doesn't exist.
-  /new:
+  /api/posts/new:
     post:
       summary: Creates a post with the specified information.
       responses:
@@ -35,7 +35,7 @@ paths:
           description: The post was successfully created.
         '400':
           description: Something went wrong while creating the post.
-  /delete/{id}:
+  /api/posts/delete/{id}:
     delete:
       summary: Deletes the post with the specified ID.
       responses:
