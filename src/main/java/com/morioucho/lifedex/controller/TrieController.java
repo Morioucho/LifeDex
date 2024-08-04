@@ -1,8 +1,6 @@
 package com.morioucho.lifedex.controller;
 
-import com.morioucho.lifedex.service.PostService;
-import com.morioucho.lifedex.service.RecipeService;
-
+import com.morioucho.lifedex.service.TrieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
@@ -18,14 +16,11 @@ import java.util.List;
 @Controller
 public class TrieController {
     @Autowired
-    private PostService postService;
-
-    @Autowired
-    private RecipeService recipeService;
+    private TrieService trieService;
 
     @GetMapping("/recipes/search")
     public ResponseEntity<List<String>> searchRecipes(@RequestParam String query){
-        List<String> foundRecipes = recipeService.searchTitleWithPrefix(query);
+        List<String> foundRecipes = trieService.searchForRecipeByPrefix(query);
         if(foundRecipes.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -35,7 +30,7 @@ public class TrieController {
 
     @GetMapping("/posts/search")
     public ResponseEntity<List<String>> searchPosts(@RequestParam String query){
-        List<String> foundPosts = postService.searchTitleWithPrefix(query);
+        List<String> foundPosts = trieService.searchForPostsByPrefix(query);
         if(foundPosts.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

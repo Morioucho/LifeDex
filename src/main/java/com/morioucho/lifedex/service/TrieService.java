@@ -2,43 +2,32 @@ package com.morioucho.lifedex.service;
 
 import com.morioucho.lifedex.model.Post;
 import com.morioucho.lifedex.model.Recipe;
+
 import com.morioucho.lifedex.trie.Trie;
+import com.morioucho.lifedex.trie.TrieBuilder;
+import com.morioucho.lifedex.trie.TrieType;
+
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
 public class TrieService {
+    private final TrieBuilder trieBuilder;
+
     private Trie recipeTrie;
     private Trie postTrie;
 
-    private Trie trie;
+    @Autowired
+    public TrieService(TrieBuilder trieBuilder){
+        this.trieBuilder = trieBuilder;
+    }
 
     @PostConstruct
     public void init(){
-        this.trie = new Trie();
-    }
-
-    @Deprecated
-    public void insertTitle(String title){
-        trie.insert(title);
-    }
-
-    @Deprecated
-    public List<String> searchByPrefix(String prefix){
-        return trie.searchByPrefix(prefix);
-    }
-
-    public void addAllPosts(List<Post> posts){
-        for(Post p : posts){
-            insertPost(p);
-        }
-    }
-
-    public void addAllRecipes(List<Recipe> recipes){
-        for(Recipe r : recipes){
-            insertRecipe(r);
-        }
+        this.recipeTrie = trieBuilder.build(TrieType.RECIPE);
+        this.postTrie = trieBuilder.build(TrieType.POST);
     }
 
     public void insertPost(Post post){

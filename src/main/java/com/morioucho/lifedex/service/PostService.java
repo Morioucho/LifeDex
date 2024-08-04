@@ -14,9 +14,6 @@ public class PostService {
     @Autowired
     private PostRepository postRepository;
 
-    @Autowired
-    private TrieService trieService;
-
     public List<Post> findAll(){
         return postRepository.findAll();
     }
@@ -27,13 +24,8 @@ public class PostService {
 
     public Post createPost(Post post){
         post.setCreationDate(LocalDateTime.now());
-        trieService.insertPost(post);
 
         return postRepository.save(post);
-    }
-
-    public List<String> searchTitleWithPrefix(String prefix){
-        return trieService.searchForPostsByPrefix(prefix);
     }
 
     public void deletePost(Long id){

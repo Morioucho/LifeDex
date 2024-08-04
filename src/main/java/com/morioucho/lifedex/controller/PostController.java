@@ -3,6 +3,7 @@ package com.morioucho.lifedex.controller;
 import com.morioucho.lifedex.model.Post;
 import com.morioucho.lifedex.service.PostService;
 
+import com.morioucho.lifedex.service.TrieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,9 @@ import java.util.List;
 public class PostController {
     @Autowired
     private PostService postService;
+
+    @Autowired
+    private TrieService trieService;
 
     @GetMapping
     public ResponseEntity<List<Post>> getAllPosts(){
@@ -38,8 +42,14 @@ public class PostController {
     }
 
     @PostMapping("/new")
-    public Post createPost(@RequestBody Post post){
-        return postService.createPost(post);
+    public ResponseEntity<Post> createPost(@RequestBody Post post){
+        if (post.getTitle() == null || post.getContent() == null) {
+            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+
+        trieService.insertPost(post);
+
+        return new ResponseEntity<>(postService.createPost(post), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")

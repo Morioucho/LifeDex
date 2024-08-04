@@ -2,6 +2,7 @@ package com.morioucho.lifedex.controller;
 
 import com.morioucho.lifedex.model.Recipe;
 import com.morioucho.lifedex.service.RecipeService;
+import com.morioucho.lifedex.service.TrieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,8 @@ import java.util.List;
 public class RecipeController {
     @Autowired
     private RecipeService recipeService;
+    @Autowired
+    private TrieService trieService;
 
     @GetMapping
     public ResponseEntity<List<Recipe>> getAllRecipes() {
@@ -41,6 +44,8 @@ public class RecipeController {
         if (recipe.getTitle() == null || recipe.getIngredients() == null || recipe.getInstructions() == null) {
             return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
         }
+
+        trieService.insertRecipe(recipe);
 
         return new ResponseEntity<>(recipeService.createRecipe(recipe), HttpStatus.CREATED);
     }
