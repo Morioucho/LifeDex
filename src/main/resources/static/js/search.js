@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
     const query = queryInput.value;
 
-    fetch(`/posts/search?query=${encodeURIComponent(query)}`)
+    fetch(`/api/search?query=${encodeURIComponent(query)}`)
       .then((response) => response.json())
       .then((data) => {
         searchResults.innerHTML = "";
