@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LifeDex</title>
 
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="icon" type="image/ico" th:href="@{../static/favicon.ico}" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LifeDex</title>
 
-  <body>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/ico" th:href="@{../static/favicon.ico}" />
+</head>
+
+<body>
+  <section>
     <header>
-      <img
-        class="logo"
-        src="images/LifeDexLogoSmall.png"
-        width="120px"
-        alt="LifeDex Logo"
-      />
+      <img class="logo" src="images/LifeDexLogoSmall.png" width="120px" alt="LifeDex Logo" />
 
       <nav>
         <ul class="nav_links">
@@ -25,19 +22,24 @@
           <li><a href="/recipes.html">Recipes</a></li>
         </ul>
       </nav>
+  </section>
 
-      <a class="cta" href="/search.html"><button>Search</button></a>
+  <section>
+    <a class="cta" href="/search.html"><button>Search</button></a>
     </header>
 
     <h1>Useful Tips and Tricks</h1>
+    <article>
+      <p>
+        Welcome to LifeDex! This is a simple web application that allows you to
+        search for posts and recipes.
+      </p>
+    </article>
+  </section>
 
-    <p>
-      Welcome to LifeDex! This is a simple web application that allows you to
-      search for posts and recipes.
-    </p>
-  </body>
-  <script 
-  type="text/javascript" src=js/index.js>
+</body>
+<script type="text/javascript" src=js/index.js>
 
-  </script>
+</script>
+
 </html>
