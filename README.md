@@ -6,6 +6,7 @@
   <img src="https://github.com/Morioucho/LifeDex/actions/workflows/gradle.yml/badge.svg" alt="Gradle Test Status">
 </p>
 
+# **ARCHIVED, PLEASE SEE LIFEDEXV2 ON THE GROUP PROFILE.**
 
 # LifeDex: A Guidebook on Life
 LifeDex is a website intended to help people who are new to living by themselves with useful guides on various amounts of topics.
